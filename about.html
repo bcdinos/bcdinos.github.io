@@ -81,8 +81,10 @@
         }
         .profiles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         .profile-card {
             background: rgba(255, 255, 255, 0.1);
@@ -150,6 +152,11 @@
                 grid-template-columns: 1fr;
             }
         }
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .profiles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
@@ -178,29 +185,40 @@
         <h2>BearCrab Legends🐻🦀</h2>
         <div class="profiles-grid">
             <div class="profile-card">
-                <img src="Brock.jpg" alt="Brock's Profile Photo" class="profile-img" />
-                <div class="profile-name">Brock "Dinos" A TEST 123</div>
+                <img src="Brock.jpg" alt="Brock's Profile Photo" class="profile-img">
+                <div class="profile-name">Brock "Dinos" A</div>
                 <div class="profile-title">BearCrab CEO & CHRO</div>
                 <div class="profile-bio">Brock jumps into any game with zero fear and all the chaos. As the unofficial event leader, he's always organizing fun and proving he's just as good at games as he is at keeping everyone entertained.</div>
             </div>
+            
             <div class="profile-card">
-                <img src="Taylor.jpg" alt="Taylor's Profile Photo" class="profile-img" />
+                <img src="Taylor.jpg" alt="Taylor's Profile Photo" class="profile-img">
                 <div class="profile-name">Taylor "Wheezzy" V</div>
                 <div class="profile-title">BearCrab CEO & Vibe Specialist</div>
                 <div class="profile-bio">Taylor might not always top the scoreboard, but she's the heart of the lobby. She's always down to play and keeps the vibe fun no matter what.</div>
             </div>
+            
             <div class="profile-card">
-                <img src="Jerry.jpg" alt="Jerry's Profile Photo" class="profile-img" />
+                <img src="Jerry.jpg" alt="Jerry's Profile Photo" class="profile-img">
                 <div class="profile-name">Jerry "Nana" D.</div>
                 <div class="profile-title">BearCrab CEO & Head Investor</div>
                 <div class="profile-bio">Jerry, better known as "Nana," plays like a pro even if his nickname sounds like your grandma's. He's always good for big plays and bigger laughs.</div>
             </div>
+            
             <div class="profile-card">
-                <img src="Luke.jpg" alt="Luke's Profile Photo" class="profile-img" />
+                <img src="Luke.jpg" alt="Luke's Profile Photo" class="profile-img">
                 <div class="profile-name">Luke "Celi" C</div>
                 <div class="profile-title">BearCrab CEO & Content Creator</div>
                 <div class="profile-bio">Luke brings the creativity and content magic to the group. Whether it's streaming highlights or creating memorable moments, he's always thinking of the next big thing.</div>
             </div>
+            
+            <div class="profile-card">
+                <img src="Celi.jpg" alt="Celi's Profile Photo" class="profile-img">
+                <div class="profile-name">Celi "The Legend" M</div>
+                <div class="profile-title">BearCrab CEO & Strategy Master</div>
+                <div class="profile-bio">Celi brings tactical brilliance and legendary plays to every game session. Known for clutch moments and strategic thinking that keeps the team ahead of the competition.</div>
+            </div>
+            
             <div class="profile-card">
                 <div class="profile-image">🏆</div>
                 <div class="profile-name">Chris "Backa" B</div>
