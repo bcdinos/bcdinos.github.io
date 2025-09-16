@@ -55,6 +55,7 @@
         .nav-links a:hover {
             color: #ff6b35;
         }
+        
         /* Hero Section */
         .hero {
             height: 60vh;
@@ -64,200 +65,182 @@
             justify-content: center;
             text-align: center;
             color: white;
-            position: relative;
-            overflow: hidden;
             margin-top: 80px;
         }
-        .hero::before {
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+        
+        /* Who's Who Section - Profile Cards */
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        .profile-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" fill-opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" fill-opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" fill-opacity="0.05"/><circle cx="10" cy="60" r="0.5" fill="%23ffffff" fill-opacity="0.05"/><circle cx="90" cy="40" r="0.5" fill="%23ffffff" fill-opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
-            opacity: 0.3;
-        }
-        .hero-content {
-            max-width: 800px;
-            z-index: 1;
-            position: relative;
-        }
-        .hero-emoji {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            display: block;
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
-        }
-        .hero p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-        /* Content Sections */
-        .content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-        .section {
-            margin-bottom: 5rem;
-        }
-        .section h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: #333;
-        }
-        .about-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #666;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-        }
-        /* Who's Who Section */
-        .profiles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        .profile-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 1px solid #f0f0f0;
-            text-align: center;
-        }
-        .profile-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, #667eea);
         }
         .profile-image {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #ff6b35, #f9ca24);
-            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
+            margin: 0 auto 1.5rem;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
         }
-        .profile-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
+        .profile-card:hover .profile-image {
+            transform: scale(1.1);
         }
         .profile-name {
             font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-weight: 700;
             color: #333;
+            margin-bottom: 0.5rem;
         }
-        .profile-description {
+        .profile-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .profile-bio {
+            font-size: 0.95rem;
             color: #666;
             line-height: 1.6;
-            font-size: 1rem;
+            max-width: 280px;
+            margin: 0 auto;
         }
-        /* Cards Grid for Features */
+        
+        /* What We Do Section */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
         .card {
             background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 1px solid #f0f0f0;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
         }
         .card-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
             display: block;
         }
         .card h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 600;
             margin-bottom: 1rem;
             color: #333;
         }
         .card p {
             color: #666;
-            line-height: 1.8;
+            font-size: 0.95rem;
         }
+        
         /* Footer */
         .footer {
-            background: #1a1a1a;
+            background: #333;
             color: white;
             text-align: center;
-            padding: 3rem 2rem;
+            padding: 2rem;
+            margin-top: 4rem;
         }
-        .footer p {
-            opacity: 0.7;
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero-emoji {
-                font-size: 3rem;
-            }
-            .nav-links {
-                display: none;
-            }
-            .section h2 {
+            .hero-content h1 {
                 font-size: 2rem;
             }
-            .profiles-grid {
-                grid-template-columns: 1fr;
+            .section {
+                padding: 2rem 1rem;
             }
-            .cards-grid {
+            .profiles-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header Navigation -->
+    <!-- Header -->
     <header class="header">
         <nav class="nav">
             <a href="index.html" class="logo">🐻🦀 BearCrab</a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -265,83 +248,75 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <span class="hero-emoji">📖</span>
-            <h1>About BearCrab</h1>
-            <p>Learn more about our amazing gaming community</p>
+            <h1>About Our Community</h1>
+            <p>Discover the passionate gamers and creators who make BearCrab Gaming Community a place where friendships are forged and adventures begin.</p>
         </div>
     </section>
 
-    <!-- Content Sections -->
-    <div class="content">
-        <!-- About Section -->
-        <section class="section">
-            <h2>Our Story</h2>
-            <div class="about-text">
-                Welcome to BearCrab - where gaming enthusiasm meets community spirit! We're a dynamic group of gamers and content creators who share a passion for exploring virtual worlds, discovering hidden gems, and building lasting friendships through shared adventures.
-                <br><br>
-                Our community thrives on the diversity of our interests - from indie darlings to AAA blockbusters, retro classics to cutting-edge releases. We believe that every game has a story to tell, and every player brings a unique perspective that enriches our collective experience.
+    <!-- Who's Who Section -->
+    <section class="section">
+        <h2>Who's Who</h2>
+        <div class="profiles-grid">
+            <div class="profile-card">
+                <div class="profile-image">🐻</div>
+                <div class="profile-name">Alex "BearLeader" Chen</div>
+                <div class="profile-title">Community Founder</div>
+                <div class="profile-bio">Passionate gamer and community builder with over 8 years of experience bringing players together. Specializes in RPGs and strategy games, always ready to help newcomers find their perfect gaming group.</div>
             </div>
-        </section>
+            <div class="profile-card">
+                <div class="profile-image">🦀</div>
+                <div class="profile-name">Sarah "CrabCommander" Kim</div>
+                <div class="profile-title">Tournament Director</div>
+                <div class="profile-bio">Competitive gaming strategist and event organizer. Known for running epic tournaments and helping players improve their skills through coaching sessions and detailed game analysis.</div>
+            </div>
+            <div class="profile-card">
+                <div class="profile-image">🎮</div>
+                <div class="profile-name">Marcus "GameScout" Rivera</div>
+                <div class="profile-title">Content Curator</div>
+                <div class="profile-bio">Always on the hunt for hidden gaming gems and indie treasures. Your go-to source for game recommendations, reviews, and discovering the next big thing in gaming.</div>
+            </div>
+            <div class="profile-card">
+                <div class="profile-image">🏆</div>
+                <div class="profile-name">Emma "AchievementHunter" Walsh</div>
+                <div class="profile-title">Community Guide</div>
+                <div class="profile-bio">Completionist extraordinaire with an encyclopedic knowledge of game mechanics. Helps community members unlock achievements and master the most challenging content.</div>
+            </div>
+            <div class="profile-card">
+                <div class="profile-image">🎨</div>
+                <div class="profile-name">Jordan "CreativeDirector" Taylor</div>
+                <div class="profile-title">Visual Storyteller</div>
+                <div class="profile-bio">Visual storyteller and content creator who captures our community's best moments through streams, videos, and stunning gaming photography that showcases our adventures.</div>
+            </div>
+            <div class="profile-card">
+                <div class="profile-image">🤝</div>
+                <div class="profile-name">Riley "CommunityHeart" Johnson</div>
+                <div class="profile-title">Community Manager</div>
+                <div class="profile-bio">The welcoming heart of our Discord server and social spaces. Always ready to help new members feel at home and connect with like-minded gamers who share their interests.</div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Who's Who Section -->
-        <section class="section">
-            <h2>Who's Who</h2>
-            <div class="profiles-grid">
-                <div class="profile-card">
-                    <div class="profile-image">🐻</div>
-                    <div class="profile-name">Bear Leader</div>
-                    <div class="profile-description">Community founder and adventure seeker. Loves exploring new worlds and bringing gamers together for epic quests.</div>
-                </div>
-                <div class="profile-card">
-                    <div class="profile-image">🦀</div>
-                    <div class="profile-name">Crab Commander</div>
-                    <div class="profile-description">Strategy master and tournament organizer. Known for tactical brilliance and competitive gaming expertise.</div>
-                </div>
-                <div class="profile-card">
-                    <div class="profile-image">🎮</div>
-                    <div class="profile-name">Game Scout</div>
-                    <div class="profile-description">Always on the hunt for hidden gems and indie treasures. Your go-to source for game recommendations and reviews.</div>
-                </div>
-                <div class="profile-card">
-                    <div class="profile-image">🏆</div>
-                    <div class="profile-name">Achievement Hunter</div>
-                    <div class="profile-description">Completionist extraordinaire with an eye for detail. Helps community members unlock their gaming potential.</div>
-                </div>
-                <div class="profile-card">
-                    <div class="profile-image">🎨</div>
-                    <div class="profile-name">Creative Director</div>
-                    <div class="profile-description">Visual storyteller and content creator. Captures our community's best moments through streams and videos.</div>
-                </div>
-                <div class="profile-card">
-                    <div class="profile-image">🤝</div>
-                    <div class="profile-name">Community Manager</div>
-                    <div class="profile-description">The heart of our Discord server. Always ready to help new members feel welcome and connected.</div>
-                </div>
+    <!-- What We Do Section -->
+    <section class="section">
+        <h2>What We Do</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <span class="card-icon">🎮</span>
+                <h3>Gaming Sessions</h3>
+                <p>Regular multiplayer adventures, co-op campaigns, and competitive tournaments across various platforms and genres.</p>
             </div>
-        </section>
-
-        <!-- What We Do Section -->
-        <section class="section">
-            <h2>What We Do</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <span class="card-icon">🎮</span>
-                    <h3>Gaming Sessions</h3>
-                    <p>Regular multiplayer adventures, co-op campaigns, and competitive tournaments across various platforms and genres.</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">🔍</span>
-                    <h3>Game Discovery</h3>
-                    <p>We scout and review indie games, early access titles, and hidden gems to share with our community.</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">🎪</span>
-                    <h3>Community Events</h3>
-                    <p>Themed game nights, screenshot contests, speedrun challenges, and collaborative projects that bring us together.</p>
-                </div>
+            <div class="card">
+                <span class="card-icon">🔍</span>
+                <h3>Game Discovery</h3>
+                <p>We scout and review indie games, early access titles, and hidden gems to share with our community.</p>
             </div>
-        </section>
-    </div>
+            <div class="card">
+                <span class="card-icon">🎪</span>
+                <h3>Community Events</h3>
+                <p>Themed game nights, screenshot contests, speedrun challenges, and collaborative projects that bring us together.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
