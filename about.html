@@ -1,178 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - BearCrab Gaming Community</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        .header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        .nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-            text-decoration: none;
-        }
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: #ffd700;
-            transform: translateY(-2px);
-        }
-        .hero {
-            padding: 120px 2rem 80px;
-            text-align: center;
-            color: #fff;
-        }
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        .hero-content p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-        .section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-        .section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        .profiles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-        .profile-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-        .profile-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: block;
-            object-fit: contain;
-            background: #222;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-        }
-        .profile-image {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            margin: 0 auto 1rem;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-        }
-        .profile-name {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
-        .profile-title {
-            font-size: 1rem;
-            color: #ffd700;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-        .profile-bio {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.5;
-        }
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-        .card-icon {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 1rem;
-        }
-        .card h3 {
-            color: #fff;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-        .card p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-        @media (max-width: 768px) {
+        
+@media (max-width: 768px) {
             .nav {
                 flex-direction: column;
                 gap: 1rem;
@@ -187,10 +15,7 @@
                 grid-template-columns: 1fr;
             }
         }
-    </style>
-</head>
-<body>
-    <!-- Header -->
+    >>>    <!-- Header -->
     <header class="header">
         <nav class="nav">
             <a href="index.html" class="logo">🐻🦀 BearCrab</a>
@@ -201,7 +26,6 @@
             </ul>
         </nav>
     </header>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -209,50 +33,48 @@
             <p>Discover the passionate gamers and creators who make BearCrab Gaming Community a place where friendships are forged and adventures begin.</p>
         </div>
     </section>
-
     <!-- Who's Who Section -->
     <section class="section">
         <h2>BearCrab Legends🐻🦀</h2>
         <div class="profiles-grid">
             <div class="profile-card">
-                <img src="Brock.jpg" alt="Brock's Profile Photo" class="profile-img">
+                <img src="Brock.jpg" alt="Brock's Profile Photo" class="profile-img" />
                 <div class="profile-name">Brock "Dinos" A</div>
-                <div class="profile-title">BearCrab CEO & CHRO</div>
+                <div class="profile-title">BearCrab CEO &amp; CHRO</div>
                 <div class="profile-bio">Brock loves jumping into any game, trying wild strategies, and seeing what chaos unfolds. He's all about laughs, fun, and keeping the group entertained no matter what happens.</div>
             </div>
             <div class="profile-card">
-                <img src="Taylor.jpg" alt="Taylor's Profile Photo" class="profile-img">
+                <img src="Taylor.jpg" alt="Taylor's Profile Photo" class="profile-img" />
                 <div class="profile-name">Taylor "Wheezzy" V</div>
-                <div class="profile-title">BearCrab CEO & Vibe Specalist</div>
+                <div class="profile-title">BearCrab CEO &amp; Vibe Specalist</div>
                 <div class="profile-bio">Taylor might not always top the scoreboard, but she's the heart of the lobby. She's always down to play and keeps the vibe fun no matter what.</div>
             </div>
             <div class="profile-card">
-                <div class="profile-image">🎮</div>
+                <img src="Jerry.jpg" alt="Jerry's Profile Photo" class="profile-img" />
                 <div class="profile-name">Jerry "Nana" D.</div>
-                <div class="profile-title">BearCrab CEO & Head Investor</div>
+                <div class="profile-title">BearCrab CEO &amp; Head Investor</div>
                 <div class="profile-bio">Jerry, better known as "Nana," plays like a pro even if his nickname sounds like your grandma's. He's always good for big plays and bigger laughs.</div>
             </div>
             <div class="profile-card">
                 <div class="profile-image">🏆</div>
                 <div class="profile-name">Chris "Backa" B</div>
-                <div class="profile-title">Chief Clown & Equine Enthusiast</div>
+                <div class="profile-title">Chief Clown &amp; Equine Enthusiast</div>
                 <div class="profile-bio">Chris has a thing for clowns and horses, and somehow makes both look cool. Whether it's in-game or out, he's always a wild card you don't want to miss..</div>
             </div>
             <div class="profile-card">
-                <div class="profile-image">🎨</div>
+                <img src="Celi.jpg" alt="Celi's Profile Photo" class="profile-img" />
                 <div class="profile-name">Celi "Swagger" C</div>
                 <div class="profile-title">Chief Yapper</div>
                 <div class="profile-bio">Celi never stops talking, cracking jokes, and keeping everyone on their toes. Her energy and nonstop chatter make every game a wild ride.</div>
             </div>
             <div class="profile-card">
-                <div class="profile-image">🤝</div>
+                <img src="Luke.jpg" alt="Luke's Profile Photo" class="profile-img" />
                 <div class="profile-name">Luke "Pants" D.</div>
                 <div class="profile-title">Certified Cool Guy</div>
                 <div class="profile-bio">Luke is the ultimate laid-back player, taking every game in stride and keeping the vibe calm. He's just here for the laughs and good times.</div>
             </div>
         </div>
     </section>
-
     <!-- What We Do Section -->
     <section class="section">
         <h2>What We Do</h2>
@@ -260,19 +82,6 @@
             <div class="card">
                 <span class="card-icon">🎮</span>
                 <h3>Gaming Sessions</h3>
-                <p>Regular multiplayer adventures, co-op campaigns, and competitive tournaments across various platforms and genres.</p>
-            </div>
-            <div class="card">
-                <span class="card-icon">🔍</span>
-                <h3>Game Discovery</h3>
-                <p>We scout and review indie games, early access titles, and hidden gems to share with our community.</p>
-            </div>
-            <div class="card">
-                <span class="card-icon">🎉</span>
-                <h3>Community Events</h3>
-                <p>From game nights to tournaments, we host regular events that bring our community together for epic gaming experiences.</p>
             </div>
         </div>
     </section>
-</body>
-</html>
