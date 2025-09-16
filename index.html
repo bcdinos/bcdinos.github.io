@@ -3,10 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello, World!</title>
+    <title>Welcome to Our Site!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-bottom: 20px;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #ccc;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .currently-playing {
+            background-color: #e9e9e9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my GitHub Pages site!</p>
+    <header>
+        <h1>Welcome to Our Site!</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+    </nav>
+    
+    <div class="container">
+        <div class="currently-playing">
+            <h2>Currently Playing</h2>
+            <ul>
+                <li>Game of Thrones - Season 1</li>
+                <li>The Last of Us - Part II</li>
+                <li>Spotify Discover Weekly</li>
+                <li>Latest Netflix Releases</li>
+            </ul>
+            <p>Stay tuned for updates on what we're currently enjoying!</p>
+        </div>
+        
+        <section>
+            <h2>Latest Updates</h2>
+            <p>Welcome to our group's homepage! This is where we'll share what we're currently into, our latest discoveries, and keep everyone updated on our shared interests.</p>
+            <p>Check back regularly for new content and updates from our group of friends.</p>
+        </section>
+    </div>
 </body>
 </html>
