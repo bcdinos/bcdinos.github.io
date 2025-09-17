@@ -1,498 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BearCrab Gaming Community</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <meta name="description" content="BearCrab: Community of gamers with tournaments, events, and game giveaways. Join our Discord!">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f5f6fa;
-            overflow-x: hidden;
-        }
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 1rem 2rem;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: #ff6b35;
-            text-decoration: none;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: #ff6b35;
-        }
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #333;
-        }
-        .mobile-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: white;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            padding: 1rem 2rem;
-            min-width: 200px;
-        }
-        .mobile-menu.show {
-            display: block;
-        }
-        .mobile-menu a {
-            display: block;
-            padding: 0.5rem 0;
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        .mobile-menu a:hover {
-            color: #ff6b35;
-        }
-        .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" fill-opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" fill-opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" fill-opacity="0.05"/><circle cx="10" cy="60" r="0.5" fill="%23ffffff" fill-opacity="0.05"/><circle cx="90" cy="40" r="0.5" fill="%23ffffff" fill-opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
-            opacity: 0.3;
-        }
-        .hero-content {
-            max-width: 800px;
-            z-index: 1;
-            position: relative;
-        }
-        .hero-emoji {
-            font-size: 6rem;
-            margin-bottom: 1rem;
-            display: block;
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        .hero h1 {
-            font-size: 5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
-        }
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-        .discord-btn {
-            display: inline-block;
-            background: #7289da;
-            color: white;
-            padding: 1.5rem 3rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(114, 137, 218, 0.4);
-        }
-        .discord-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(114, 137, 218, 0.6);
-            background: #5b6eae;
-        }
-
-        .content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-        .section {
-            margin-bottom: 5rem;
-        }
-        .section h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: #333;
-        }
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        .card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 1px solid #f0f0f0;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        }
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-        .card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-        .card p {
-            color: #666;
-            line-height: 1.8;
-        }
-        .stats-section {
-            background: linear-gradient(135deg, #ff6b35 0%, #f9ca24 100%);
-            padding: 5rem 2rem;
-            margin: 5rem 0;
-            border-radius: 30px;
-            color: white;
-            text-align: center;
-        }
-        #free-games-list {
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-            justify-content: center;
-        }
-        .game-card {
-            background: #23242b;
-            border-radius: 12px;
-            padding: 18px 10px 12px 10px;
-            width: 228px;
-            text-align: center;
-            box-shadow: 0 6px 20px rgba(40,44,52,0.18);
-            transition: transform 0.18s, box-shadow 0.18s;
-            border: 1.5px solid #282c34;
-            margin-bottom: 16px;
-            position: relative;
-        }
-        .game-card:hover {
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 12px 30px #7289da55;
-            border-color: #7289da;
-        }
-        .game-card img {
-            border-radius: 6px;
-            margin-bottom: 10px;
-            object-fit: cover;
-            width: 100%;
-            height: 110px;
-            box-shadow: 0 2px 8px #0002;
-        }
-        .game-card strong {
-            color: white;
-            font-size: 1.15em;
-        }
-        .game-card .platforms {
-            margin-top: 5px;
-            margin-bottom: 4px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 5px;
-            min-height: 28px;
-        }
-        .platform-badge {
-            background: #232948;
-            color: white;
-            font-weight: 500;
-            font-size: 1.08em;
-            border-radius: 14px;
-            padding: 3px 13px 3px 8px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .badge-direct {
-            background: #ff6b35;
-            color: white;
-        }
-        .game-card .worth {
-            color: #f9ca24;
-            font-weight: 600;
-            font-size: 1.06em;
-        }
-        .game-card .end-date {
-            color: #fffabb;
-            background: #4c4f5f;
-            border-radius: 8px;
-            padding: 1.5px 9px;
-            margin: 3px auto;
-            display: inline-block;
-            font-size: 0.99em;
-            font-weight: 500;
-        }
-        .game-card a {
-            color: #ff6b35;
-            font-size: 1.04em;
-            margin-top: 3px;
-            text-decoration: none;
-            border-bottom: 1px dotted #ff6b35;
-            transition: color 0.2s;
-            display: inline-block;
-        }
-        .game-card a:hover {
-            color: #ff9b35;
-        }
-        .footer {
-            background: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-        .footer p {
-            opacity: 0.7;
-        }
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .mobile-menu-btn {
-                display: block;
-            }
-            .hero h1 {
-                font-size: 3rem;
-            }
-            .hero-emoji {
-                font-size: 4rem;
-            }
-            .hero p {
-                font-size: 1.2rem;
-            }
-            .section h2 {
-                font-size: 2rem;
-            }
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-            #free-games-list {
-                gap: 12px;
-            }
-            .game-card {
-                width: 95vw;
-                max-width: 320px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BearCrab Gaming Community</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<meta name="description" content="BearCrab: Community of gamers with tournaments, events, and game giveaways. Join our Discord!">
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #f5f6fa;
+    overflow-x: hidden;
+}
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 1rem 2rem;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #ff6b35;
+    text-decoration: none;
+}
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+}
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.nav-links a:hover {
+    color: #ff6b35;
+}
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+}
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    min-width: 200px;
+}
+.mobile-menu.show {
+    display: block;
+}
+.mobile-menu a {
+    display: block;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.mobile-menu a:hover {
+    color: #ff6b35;
+}
+.hero {
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" fill-opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" fill-opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" fill-opacity="0.05"/><circle cx="10" cy="60" r="0.5" fill="%23ffffff" fill-opacity="0.05"/><circle cx="90" cy="40" r="0.5" fill="%23ffffff" fill-opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+    opacity: 0.3;
+}
+.hero-content {
+    max-width: 800px;
+    z-index: 1;
+    position: relative;
+}
+.hero-emoji {
+    font-size: 6rem;
+    margin-bottom: 1rem;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+.hero h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+}
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+.discord-btn {
+    display: inline-block;
+    background: #7289da;
+    color: white;
+    padding: 1.5rem 3rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(114, 137, 218, 0.4);
+}
+.discord-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(114, 137, 218, 0.6);
+    background: #5b6eae;
+}
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+}
+.section {
+    margin-bottom: 5rem;
+}
+.section h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #333;
+}
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+.card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+}
+.card p {
+    color: #666;
+    line-height: 1.8;
+}
+.stats-section {
+    background: linear-gradient(135deg, #ff6b35 0%, #f9ca24 100%);
+    padding: 5rem 2rem;
+    margin: 5rem 0;
+    border-radius: 30px;
+    color: white;
+    text-align: center;
+}
+#free-games-list {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    justify-content: center;
+}
+.game-card {
+    background: #23242b;
+    border-radius: 12px;
+    padding: 18px 10px 12px 10px;
+    width: 228px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(40,44,52,0.18);
+    transition: transform 0.18s, box-shadow 0.18s;
+    border: 1.5px solid #282c34;
+    margin-bottom: 16px;
+    position: relative;
+}
+.game-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 30px #7289da55;
+    border-color: #7289da;
+}
+.game-card img {
+    border-radius: 6px;
+    margin-bottom: 10px;
+    object-fit: cover;
+    width: 100%;
+    height: 110px;
+    box-shadow: 0 2px 8px #0002;
+}
+.game-card strong {
+    color: white;
+    font-size: 1.15em;
+}
+.game-card .platforms {
+    margin-top: 5px;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    min-height: 28px;
+}
+.platform-badge {
+    background: #232948;
+    color: white;
+    font-weight: 500;
+    font-size: 1.08em;
+    border-radius: 14px;
+    padding: 3px 13px 3px 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.platform-badge svg {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+.badge-direct {
+    background: #ff6b35;
+    color: white;
+}
+.game-card .worth {
+    color: #f9ca24;
+    font-weight: 600;
+    font-size: 1.06em;
+}
+.game-card .end-date {
+    color: #fffabb;
+    background: #4c4f5f;
+    border-radius: 8px;
+    padding: 1.5px 9px;
+    margin: 3px auto;
+    display: inline-block;
+    font-size: 0.99em;
+    font-weight: 500;
+}
+.game-card a {
+    color: #ff6b35;
+    font-size: 1.04em;
+    margin-top: 3px;
+    text-decoration: none;
+    border-bottom: 1px dotted #ff6b35;
+    transition: color 0.2s;
+    display: inline-block;
+}
+.game-card a:hover {
+    color: #ff9b35;
+}
+.footer {
+    background: #1a1a1a;
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+}
+.footer p {
+    opacity: 0.7;
+}
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    .mobile-menu-btn {
+        display: block;
+    }
+    .hero h1 {
+        font-size: 3rem;
+    }
+    .hero-emoji {
+        font-size: 4rem;
+    }
+    .hero p {
+        font-size: 1.2rem;
+    }
+    .section h2 {
+        font-size: 2rem;
+    }
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+    #free-games-list {
+        gap: 12px;
+    }
+    .game-card {
+        width: 95vw;
+        max-width: 320px;
+    }
+}
+</style>
 </head>
 <body>
-    <!-- Header Navigation -->
-    <header class="header">
-        <nav class="nav">
-            <a href="#" class="logo">🐻🦀 BearCrab</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-            <button class="mobile-menu-btn" aria-label="Open mobile menu" aria-controls="mobileMenu" aria-expanded="false" onclick="toggleMobileMenu()">☰</button>
-            <div class="mobile-menu" id="mobileMenu">
-                <a href="#home">Home</a>
-                <a href="about.html">About</a>
+<header class="header">
+    <nav class="nav">
+        <a href="#" class="logo">🐻🦀 BearCrab</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        <button class="mobile-menu-btn" aria-label="Open mobile menu" aria-controls="mobileMenu" aria-expanded="false" onclick="toggleMobileMenu()">☰</button>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#home">Home</a>
+            <a href="about.html">About</a>
+        </div>
+    </nav>
+</header>
+<section class="hero" id="home">
+    <div class="hero-content">
+        <span class="hero-emoji">🐻🦀</span>
+        <h1>BearCrab</h1>
+        <p>Games, friends, and chill vibes.</p>
+        <a href="https://discord.gg/dguGQryb" class="discord-btn">🎮 Join Our Discord</a>
+    </div>
+</section>
+<div class="content">
+    <section class="section">
+        <h2>What We Offer</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <span class="card-icon">🎮</span>
+                <h3>Epic Gaming Sessions</h3>
+                <p>Join our community for regular gaming sessions across multiple platforms. From casual matches to competitive tournaments, there's something for everyone.</p>
             </div>
-        </nav>
-    </header>
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <span class="hero-emoji">🐻🦀</span>
-            <h1>BearCrab</h1>
-            <p>Games, friends, and chill vibes.</p>
-            <a href="https://discord.gg/dguGQryb" class="discord-btn">🎮 Join Our Discord</a>
+            <div class="card">
+                <span class="card-icon">🏆</span>
+                <h3>Tournaments & Events</h3>
+                <p>Participate in weekly tournaments and special events. Climb the leaderboards and earn exclusive rewards while making new friends.</p>
+            </div>
+            <div class="card">
+                <span class="card-icon">👥</span>
+                <h3>Amazing Community</h3>
+                <p>Connect with like-minded gamers from around the world. Share strategies, form teams, and build lasting friendships in our welcoming environment.</p>
+            </div>
         </div>
     </section>
-    <div class="content">
-        <!-- Features Section -->
-        <section class="section">
-            <h2>What We Offer</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <span class="card-icon">🎮</span>
-                    <h3>Epic Gaming Sessions</h3>
-                    <p>Join our community for regular gaming sessions across multiple platforms. From casual matches to competitive tournaments, there's something for everyone.</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">🏆</span>
-                    <h3>Tournaments & Events</h3>
-                    <p>Participate in weekly tournaments and special events. Climb the leaderboards and earn exclusive rewards while making new friends.</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">👥</span>
-                    <h3>Amazing Community</h3>
-                    <p>Connect with like-minded gamers from around the world. Share strategies, form teams, and build lasting friendships in our welcoming environment.</p>
-                </div>
-            </div>
-        </section>
-        <!-- Free Game Promos Section -->
-        <section id="free-games" class="stats-section">
-            <h2>Free Games Right Now</h2>
-            <div id="free-games-list">
-                <p>Loading the latest free games...</p>
-            </div>
-        </section>
-    </div>
-    <footer class="footer">
-        <p>© 2025 BearCrab Inc. Built with ❤️ for gamers.</p>
-    </footer>
-    <script>
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('show');
-        }
-        document.addEventListener('click', function(event) {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-            if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
-                mobileMenu.classList.remove('show');
-            }
-        });
-    </script>
-    <script>
-    // Platform icon mapping (emoji for simplicity; can swap for SVGs)
-    const platformIcons = {
-        "steam": "🟦",
-        "epic games store": "⬛",
-        "gog": "🟪",
-        "origin": "🟧",
-        "itch.io": "🟥",
-        "ubisoft": "🔵",
-        "playstation": "🔵",
-        "xbox": "🟩",
-        "amazon": "🟨",
-        "android": "🤖",
-        "ios": "📱",
-        "nintendo": "🔴",
-        "discord": "💬",
-        "battle.net": "🌀",
-        // fallback
-        "default": "🎮"
-    };
-    function getIcon(platformStr) {
-        platformStr = platformStr.toLowerCase();
-        for(const key in platformIcons) {
-            if (key !== "default" && platformStr.includes(key)) return platformIcons[key];
-        }
-        return platformIcons["default"];
+    <section id="free-games" class="stats-section">
+        <h2>Free Games Right Now</h2>
+        <div id="free-games-list">
+            <p>Loading the latest free games...</p>
+        </div>
+    </section>
+</div>
+<footer class="footer">
+    <p>© 2025 BearCrab Inc. Built with ❤️ for gamers.</p>
+</footer>
+<script>
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.classList.toggle('show');
+}
+document.addEventListener('click', function(event) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+        mobileMenu.classList.remove('show');
     }
-    function isDirectStoreClaim(link, plat) {
-        if (!link) return false;
-        link = link.toLowerCase();
-        plat = plat.toLowerCase();
-        return (
-            (plat.includes("epic") && link.includes("epicgames.com")) ||
-            (plat.includes("steam") && link.includes("steampowered.com"))
-        );
+});
+
+// SVG logos for platforms!
+function getSVGIcon(platformStr) {
+    platformStr = platformStr.toLowerCase();
+    if (platformStr.includes("steam")) {
+        // Steam logo SVG
+        return `<svg viewBox="0 0 256 256"><circle cx="128" cy="128" r="128" fill="#171a21"/><circle cx="128" cy="128" r="65" fill="white"/><circle cx="128" cy="128" r="35" fill="#171a21"/></svg>`;
     }
-    // Load all premium free games from all sources
-    const url = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways";
-    async function loadFreeGames() {
-        const gamesDiv = document.getElementById("free-games-list");
-        gamesDiv.innerHTML = "<p>Loading the latest free games...</p>";
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            gamesDiv.innerHTML = "";
-            // Only show premium (worth > $0) time-limited games
-            const premiumGames = Array.isArray(data) ? data.filter(game =>
-                game.worth && game.worth !== "$0.00" && game.worth !== "N/A" && game.worth.trim() !== ""
-            ) : [];
-            if (premiumGames.length > 0) {
-                premiumGames.slice(0, 12).forEach(game => {
-                    const end = (game.end_date && game.end_date !== "N/A") ? game.end_date : "Limited Time";
-                    // Render all platform icons (could be multiple)
-                    const platStr = game.platforms || "";
-                    const platforms = platStr.split(",").map(p=>p.trim()).filter(Boolean);
-                    const iconsHtml = platforms.map(plat => {
-                        const ico = getIcon(plat);
-                        const badgeDirect = isDirectStoreClaim(game.open_giveaway_url, plat) ? " badge-direct" : "";
-                        return `<span class="platform-badge${badgeDirect}" title="${plat}">
-                                ${ico} ${plat.replace(/Store/i,"")}
-                                ${badgeDirect ? '⭐' : ''}
-                               </span>`;
-                    }).join(' ');
-                    const gameCard = document.createElement("div");
-                    gameCard.className = "game-card";
-                    gameCard.innerHTML = `
-                        <img src="${game.image}" alt="${game.title}">
-                        <div>
-                            <strong>${game.title}</strong>
-                            <div class="platforms">${iconsHtml}</div>
-                            <span class="worth">Worth: ${game.worth}</span>
-                            <span class="end-date">Ends: ${end}</span>
-                            <a href="${game.open_giveaway_url}" target="_blank">Claim Free</a>
-                        </div>
-                    `;
-                    gamesDiv.appendChild(gameCard);
-                });
-            } else {
-                gamesDiv.innerHTML = "<p>No premium free games right now. Check back soon!</p>";
-            }
-        } catch (error) {
-            gamesDiv.innerHTML = `<p>Failed to load promos: ${error.message}</p>`;
-            console.error(error);
+    if (platformStr.includes("epic")) {
+        // Epic logo SVG (simple black square + EPIC text)
+        return `<svg viewBox="0 0 50 50"><rect width="50" height="50" rx="8" fill="#2a2a2a"/><text x="10" y="33" font-size="21" font-family="Arial" fill="#fff">EPIC</text></svg>`;
+    }
+    if (platformStr.includes("gog")) {
+        // GOG logo (purple square + GOG text)
+        return `<svg viewBox="0 0 50 50"><rect width="50" height="50" rx="8" fill="#865bca"/><text x="7" y="34" font-size="19" font-family="Arial" fill="#fff">GOG</text></svg>`;
+    }
+    if (platformStr.includes("xbox")) {
+        return `<svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="25" fill="#107C10"/><text x="10" y="36" font-size="31" font-family="Arial" fill="#fff">X</text></svg>`;
+    }
+    if (platformStr.includes("playstation")) {
+        return `<svg viewBox="0 0 50 50"><rect width="50" height="50" rx="8" fill="#003791"/><text x="7" y="36" font-size="23" font-family="Arial" fill="#fff">PS</text></svg>`;
+    }
+    if (platformStr.includes("amazon")) {
+        return `<svg viewBox="0 0 50 50"><rect width="50" height="50" rx="8" fill="#ff9900"/><text x="7" y="36" font-size="24" font-family="Arial" fill="#fff">AMZ</text></svg>`;
+    }
+    // Default: game controller
+    return `<svg viewBox="0 0 48 48"><rect width="48" height="48" rx="12" fill="#2d2f37"/><circle cx="14" cy="20" r="2.5" fill="#fff"/><circle cx="34" cy="20" r="2.5" fill="#fff"/><rect x="14" y="30" width="20" height="4" rx="2" fill="#fff"/></svg>`;
+}
+function isDirectStoreClaim(link, plat) {
+    if (!link) return false;
+    link = link.toLowerCase();
+    plat = plat.toLowerCase();
+    return (
+        (plat.includes("epic") && link.includes("epicgames.com")) ||
+        (plat.includes("steam") && link.includes("steampowered.com"))
+    );
+}
+const url = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways";
+async function loadFreeGames() {
+    const gamesDiv = document.getElementById("free-games-list");
+    gamesDiv.innerHTML = "<p>Loading the latest free games...</p>";
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        gamesDiv.innerHTML = "";
+        const premiumGames = Array.isArray(data) ? data.filter(game =>
+            game.worth && game.worth !== "$0.00" && game.worth !== "N/A" && game.worth.trim() !== ""
+        ) : [];
+        if (premiumGames.length > 0) {
+            premiumGames.slice(0, 12).forEach(game => {
+                const end = (game.end_date && game.end_date !== "N/A") ? game.end_date : "Limited Time";
+                const platStr = game.platforms || "";
+                const platforms = platStr.split(",").map(p=>p.trim()).filter(Boolean);
+                const iconsHtml = platforms.map(plat => {
+                    const svg = getSVGIcon(plat);
+                    const badgeDirect = isDirectStoreClaim(game.open_giveaway_url, plat) ? " badge-direct" : "";
+                    return `<span class="platform-badge${badgeDirect}" title="${plat}">${svg} ${plat.replace(/Store/i,"")}${badgeDirect ? '⭐' : ''}</span>`;
+                }).join(' ');
+                const gameCard = document.createElement("div");
+                gameCard.className = "game-card";
+                gameCard.innerHTML = `
+                    <img src="${game.image}" alt="${game.title}">
+                    <div>
+                        <strong>${game.title}</strong>
+                        <div class="platforms">${iconsHtml}</div>
+                        <span class="worth">Worth: ${game.worth}</span>
+                        <span class="end-date">Ends: ${end}</span>
+                        <a href="${game.open_giveaway_url}" target="_blank">Claim Free</a>
+                    </div>
+                `;
+                gamesDiv.appendChild(gameCard);
+            });
+        } else {
+            gamesDiv.innerHTML = "<p>No premium free games right now. Check back soon!</p>";
         }
+    } catch (error) {
+        gamesDiv.innerHTML = `<p>Failed to load promos: ${error.message}</p>`;
+        console.error(error);
     }
-    loadFreeGames();
-    </script>
+}
+loadFreeGames();
+</script>
 </body>
 </html>
