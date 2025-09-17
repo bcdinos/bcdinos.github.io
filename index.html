@@ -209,97 +209,110 @@ body {
 }
 #free-games-list {
     display: flex;
-    gap: 24px;
+    gap: 34px;
     flex-wrap: wrap;
     margin-top: 15px;
     justify-content: center;
 }
 .game-card {
-    background: #23242b;
-    border-radius: 12px;
-    padding: 18px 10px 12px 10px;
-    width: 228px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 18px 14px 15px 14px;
+    width: 245px;
     text-align: center;
-    box-shadow: 0 6px 20px rgba(40,44,52,0.18);
-    transition: transform 0.18s, box-shadow 0.18s;
-    border: 1.5px solid #282c34;
-    margin-bottom: 16px;
+    box-shadow: 0 6px 22px #7289da24, 0 1.5px 5px #7892c51a;
+    border: 1.5px solid #e1e7f3;
+    margin-bottom: 28px;
     position: relative;
+    transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
 }
 .game-card:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 12px 30px #7289da55;
-    border-color: #7289da;
+    transform: translateY(-5px) scale(1.027);
+    box-shadow: 0 14px 36px #667eea2a, 0 2px 10px #7289da18;
+    border-color: #4287f5;
 }
 .game-card img {
-    border-radius: 6px;
+    border-radius: 9px;
     margin-bottom: 10px;
     object-fit: cover;
     width: 100%;
-    height: 110px;
-    box-shadow: 0 2px 8px #0002;
+    height: 116px;
+    box-shadow: 0 2px 14px #446ba311;
+    border: 1px solid #eaeafe;
+    transition: border 0.18s;
 }
 .game-card strong {
-    color: white;
-    font-size: 1.15em;
+    color: #1d2341;
+    font-size: 1.18em;
+    letter-spacing: 0.009em;
+    font-weight: 800;
 }
 .game-card .platforms {
-    margin-top: 5px;
-    margin-bottom: 4px;
+    margin: 9px 0 4px 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 7px;
     min-height: 28px;
 }
 .platform-badge {
-    background: #232948;
-    color: white;
+    background: #f7f8fc;
+    color: #2d2f37;
     font-weight: 500;
-    font-size: 1.08em;
-    border-radius: 14px;
-    padding: 3px 13px 3px 8px;
+    font-size: 1em;
+    border-radius: 12px;
+    border: 1px solid #e2e6eb;
+    padding: 4px 12px 4px 7px;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
+    box-shadow: 0 1px 2px #e1e2f179;
 }
 .platform-badge svg {
     width: 18px;
     height: 18px;
     display: inline-block;
     vertical-align: middle;
-    margin-right: 6px;
+    margin-right: 4px;
 }
 .badge-direct {
-    background: #ff6b35;
-    color: white;
+    background: #ffefdc !important;
+    color: #e65100 !important;
+    border-color: #ffc299 !important;
+    font-weight: 700!important;
 }
 .game-card .worth {
-    color: #f9ca24;
-    font-weight: 600;
-    font-size: 1.06em;
+    color: #ff9100;
+    font-weight: 700;
+    font-size: 1.09em;
+    letter-spacing: 0.02em;
+    margin:7px 0 0 0;
 }
 .game-card .end-date {
-    color: #fffabb;
-    background: #4c4f5f;
+    color: #832d00;
+    background: #ffeccc;
     border-radius: 8px;
-    padding: 1.5px 9px;
-    margin: 3px auto;
+    padding: 2px 13px;
+    margin: 8px auto 6px auto;
     display: inline-block;
-    font-size: 0.99em;
-    font-weight: 500;
+    font-size: 1.06em;
+    font-weight: 600;
+    border: 1px solid #ffca99;
+    letter-spacing: 0.02em;
 }
 .game-card a {
-    color: #ff6b35;
-    font-size: 1.04em;
-    margin-top: 3px;
+    color: #3775fd;
+    font-size: 1.09em;
+    margin-top: 8px;
     text-decoration: none;
-    border-bottom: 1px dotted #ff6b35;
-    transition: color 0.2s;
+    border-bottom: 1px dotted #6c90ef;
+    font-weight: 600;
     display: inline-block;
+    letter-spacing: 0.01em;
+    transition: color 0.18s;
 }
 .game-card a:hover {
-    color: #ff9b35;
+    color: #ff6b35;
 }
 .footer {
     background: #1a1a1a;
@@ -408,20 +421,15 @@ document.addEventListener('click', function(event) {
         mobileMenu.classList.remove('show');
     }
 });
-
-// SVG logos for platforms!
 function getSVGIcon(platformStr) {
     platformStr = platformStr.toLowerCase();
     if (platformStr.includes("steam")) {
-        // Steam logo SVG
         return `<svg viewBox="0 0 256 256"><circle cx="128" cy="128" r="128" fill="#171a21"/><circle cx="128" cy="128" r="65" fill="white"/><circle cx="128" cy="128" r="35" fill="#171a21"/></svg>`;
     }
     if (platformStr.includes("epic")) {
-        // Epic logo SVG (simple black square + EPIC text)
         return `<svg viewBox="0 0 50 50"><rect width="50" height="50" rx="8" fill="#2a2a2a"/><text x="10" y="33" font-size="21" font-family="Arial" fill="#fff">EPIC</text></svg>`;
     }
     if (platformStr.includes("gog")) {
-        // GOG logo (purple square + GOG text)
         return `<svg viewBox="0 0 50 50"><rect width="50" height="50" rx="8" fill="#865bca"/><text x="7" y="34" font-size="19" font-family="Arial" fill="#fff">GOG</text></svg>`;
     }
     if (platformStr.includes("xbox")) {
@@ -433,8 +441,7 @@ function getSVGIcon(platformStr) {
     if (platformStr.includes("amazon")) {
         return `<svg viewBox="0 0 50 50"><rect width="50" height="50" rx="8" fill="#ff9900"/><text x="7" y="36" font-size="24" font-family="Arial" fill="#fff">AMZ</text></svg>`;
     }
-    // Default: game controller
-    return `<svg viewBox="0 0 48 48"><rect width="48" height="48" rx="12" fill="#2d2f37"/><circle cx="14" cy="20" r="2.5" fill="#fff"/><circle cx="34" cy="20" r="2.5" fill="#fff"/><rect x="14" y="30" width="20" height="4" rx="2" fill="#fff"/></svg>`;
+    return `<svg viewBox="0 0 48 48"><rect width="48" height="48" rx="12" fill="#dae3f4"/><g><circle cx="14" cy="20" r="2.5" fill="#7289da"/><circle cx="34" cy="20" r="2.5" fill="#7289da"/><rect x="16" y="31" width="16" height="3.5" rx="1.5" fill="#7289da"/></g></svg>`;
 }
 function isDirectStoreClaim(link, plat) {
     if (!link) return false;
