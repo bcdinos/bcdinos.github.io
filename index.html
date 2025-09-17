@@ -14,7 +14,6 @@
             background: #f5f6fa;
             overflow-x: hidden;
         }
-        /* Header Navigation */
         .header {
             position: fixed;
             top: 0;
@@ -54,7 +53,6 @@
         .nav-links a:hover {
             color: #ff6b35;
         }
-        /* Mobile menu button */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -88,7 +86,6 @@
         .mobile-menu a:hover {
             color: #ff6b35;
         }
-        /* Hero Section */
         .hero {
             height: 100vh;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -154,7 +151,6 @@
             box-shadow: 0 15px 40px rgba(114, 137, 218, 0.6);
             background: #5b6eae;
         }
-        /* Content Sections */
         .content {
             max-width: 1200px;
             margin: 0 auto;
@@ -203,7 +199,6 @@
             color: #666;
             line-height: 1.8;
         }
-        /* Free Game Promos section */
         .stats-section {
             background: linear-gradient(135deg, #ff6b35 0%, #f9ca24 100%);
             padding: 5rem 2rem;
@@ -275,7 +270,6 @@
         .game-card a:hover {
             color: #ff9b35;
         }
-        /* Footer */
         .footer {
             background: #1a1a1a;
             color: white;
@@ -285,7 +279,6 @@
         .footer p {
             opacity: 0.7;
         }
-        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -343,7 +336,6 @@
             <a href="https://discord.gg/dguGQryb" class="discord-btn">🎮 Join Our Discord</a>
         </div>
     </section>
-    <!-- Content Sections -->
     <div class="content">
         <!-- Features Section -->
         <section class="section">
@@ -374,7 +366,6 @@
             </div>
         </section>
     </div>
-    <!-- Footer -->
     <footer class="footer">
         <p>© 2025 BearCrab Inc. Built with ❤️ for gamers.</p>
     </footer>
@@ -383,7 +374,6 @@
             const mobileMenu = document.getElementById('mobileMenu');
             mobileMenu.classList.toggle('show');
         }
-        // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
             const mobileMenu = document.getElementById('mobileMenu');
             const menuBtn = document.querySelector('.mobile-menu-btn');
@@ -393,39 +383,39 @@
         });
     </script>
     <script>
-    // Fetch free game promos from GamerPower API (all platforms; filter Epic or Steam etc. as desired).
-    const url = "https://www.gamerpower.com/api/giveaways";
+    // Use a public CORS proxy for GitHub Pages
+    const url = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways";
     async function loadFreeGames() {
-      const gamesDiv = document.getElementById("free-games-list");
-      gamesDiv.innerHTML = "<p>Loading the latest free games...</p>";
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        gamesDiv.innerHTML = "";
-        if (Array.isArray(data) && data.length > 0) {
-          data.slice(0, 8).forEach(game => {
-            const end = (game.end_date && game.end_date !== "N/A") ? game.end_date : "Limited Time";
-            const platform = game.platforms || "";
-            const gameCard = document.createElement("div");
-            gameCard.className = "game-card";
-            gameCard.innerHTML = `
-              <img src="${game.image}" alt="${game.title}">
-              <div>
-                <strong>${game.title}</strong>
-                <span class="platforms">${platform}</span>
-                <span class="end-date">Ends: ${end}</span>
-                <a href="${game.open_giveaway_url}" target="_blank">Claim Free</a>
-              </div>
-            `;
-            gamesDiv.appendChild(gameCard);
-          });
-        } else {
-          gamesDiv.innerHTML = "<p>No free promos found right now. Check back soon!</p>";
+        const gamesDiv = document.getElementById("free-games-list");
+        gamesDiv.innerHTML = "<p>Loading the latest free games...</p>";
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            gamesDiv.innerHTML = "";
+            if (Array.isArray(data) && data.length > 0) {
+                data.slice(0, 8).forEach(game => {
+                    const end = (game.end_date && game.end_date !== "N/A") ? game.end_date : "Limited Time";
+                    const platform = game.platforms || "";
+                    const gameCard = document.createElement("div");
+                    gameCard.className = "game-card";
+                    gameCard.innerHTML = `
+                        <img src="${game.image}" alt="${game.title}">
+                        <div>
+                            <strong>${game.title}</strong>
+                            <span class="platforms">${platform}</span>
+                            <span class="end-date">Ends: ${end}</span>
+                            <a href="${game.open_giveaway_url}" target="_blank">Claim Free</a>
+                        </div>
+                    `;
+                    gamesDiv.appendChild(gameCard);
+                });
+            } else {
+                gamesDiv.innerHTML = "<p>No free promos found right now. Check back soon!</p>";
+            }
+        } catch (error) {
+            gamesDiv.innerHTML = `<p>Failed to load promos: ${error.message}</p>`;
+            console.error(error);
         }
-      } catch (error) {
-        gamesDiv.innerHTML = `<p>Failed to load promos: ${error.message}</p>`;
-        console.error(error);
-      }
     }
     loadFreeGames();
     </script>
