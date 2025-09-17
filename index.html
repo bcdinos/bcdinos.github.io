@@ -382,42 +382,54 @@
             }
         });
     </script>
-    <script>
-    // Use a public CORS proxy for GitHub Pages
-    const url = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways";
-    async function loadFreeGames() {
-        const gamesDiv = document.getElementById("free-games-list");
-        gamesDiv.innerHTML = "<p>Loading the latest free games...</p>";
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            gamesDiv.innerHTML = "";
-            if (Array.isArray(data) && data.length > 0) {
-                data.slice(0, 8).forEach(game => {
-                    const end = (game.end_date && game.end_date !== "N/A") ? game.end_date : "Limited Time";
-                    const platform = game.platforms || "";
-                    const gameCard = document.createElement("div");
-                    gameCard.className = "game-card";
-                    gameCard.innerHTML = `
-                        <img src="${game.image}" alt="${game.title}">
-                        <div>
-                            <strong>${game.title}</strong>
-                            <span class="platforms">${platform}</span>
-                            <span class="end-date">Ends: ${end}</span>
-                            <a href="${game.open_giveaway_url}" target="_blank">Claim Free</a>
-                        </div>
-                    `;
-                    gamesDiv.appendChild(gameCard);
-                });
-            } else {
-                gamesDiv.innerHTML = "<p>No free promos found right now. Check back soon!</p>";
-            }
-        } catch (error) {
-            gamesDiv.innerHTML = `<p>Failed to load promos: ${error.message}</p>`;
-            console.error(error);
+   <script>
+const epicUrl = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways?platform=epic-games-store";
+const steamUrl = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways?platform=steam";
+
+function isPremium(game) {
+    // worth field is a string like "$19.99" when premium, "$0.00" or "N/A" or "" for always-free
+    return game.worth && game.worth !== "$0.00" && game.worth !== "N/A" && game.worth.trim() !== "";
+}
+
+async function loadFreeGames() {
+    const gamesDiv = document.getElementById("free-games-list");
+    gamesDiv.innerHTML = "<p>Loading the latest free games...</p>";
+    try {
+        // Fetch both Epic and Steam giveaways in parallel
+        const [epicRes, steamRes] = await Promise.all([
+            fetch(epicUrl).then(r => r.json()),
+            fetch(steamUrl).then(r => r.json())
+        ]);
+        // Combine and filter for premium games only
+        const allPremium = [...epicRes, ...steamRes].filter(isPremium);
+        gamesDiv.innerHTML = "";
+        if (allPremium.length > 0) {
+            allPremium.slice(0, 8).forEach(game => {
+                const end = (game.end_date && game.end_date !== "N/A") ? game.end_date : "Limited Time";
+                const platform = game.platforms || "";
+                const gameCard = document.createElement("div");
+                gameCard.className = "game-card";
+                gameCard.innerHTML = `
+                    <img src="${game.image}" alt="${game.title}">
+                    <div>
+                        <strong>${game.title}</strong>
+                        <span class="platforms">${platform}</span>
+                        <span>Worth: <b style="color:#f9ca24">${game.worth}</b></span>
+                        <span class="end-date">Ends: ${end}</span>
+                        <a href="${game.open_giveaway_url}" target="_blank">Claim Free</a>
+                    </div>
+                `;
+                gamesDiv.appendChild(gameCard);
+            });
+        } else {
+            gamesDiv.innerHTML = "<p>No premium free games on Steam or Epic right now. Check back soon!</p>";
         }
+    } catch (error) {
+        gamesDiv.innerHTML = `<p>Failed to load promos: ${error.message}</p>`;
+        console.error(error);
     }
-    loadFreeGames();
-    </script>
+}
+loadFreeGames();
+</script>
 </body>
 </html>
