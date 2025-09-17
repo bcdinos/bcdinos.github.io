@@ -151,6 +151,7 @@
             box-shadow: 0 15px 40px rgba(114, 137, 218, 0.6);
             background: #5b6eae;
         }
+
         .content {
             max-width: 1200px;
             margin: 0 auto;
@@ -218,12 +219,13 @@
             background: #23242b;
             border-radius: 12px;
             padding: 18px 10px 12px 10px;
-            width: 210px;
+            width: 228px;
             text-align: center;
             box-shadow: 0 6px 20px rgba(40,44,52,0.18);
             transition: transform 0.18s, box-shadow 0.18s;
             border: 1.5px solid #282c34;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
+            position: relative;
         }
         .game-card:hover {
             transform: translateY(-5px) scale(1.03);
@@ -242,30 +244,53 @@
             color: white;
             font-size: 1.15em;
         }
-        .game-card span,
         .game-card .platforms {
-            color: #dfdfdf;
-            font-size: 0.97em;
-            display: block;
-            margin: 2px 0 0 0;
+            margin-top: 5px;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            min-height: 28px;
         }
-        .game-card .platforms {
-            color: #7289da;
-            font-size: 0.94em;
+        .platform-badge {
+            background: #232948;
+            color: white;
             font-weight: 500;
+            font-size: 1.08em;
+            border-radius: 14px;
+            padding: 3px 13px 3px 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
-        .game-card .end-date {
+        .badge-direct {
+            background: #ff6b35;
+            color: white;
+        }
+        .game-card .worth {
             color: #f9ca24;
             font-weight: 600;
-            font-size: 1.03em;
+            font-size: 1.06em;
+        }
+        .game-card .end-date {
+            color: #fffabb;
+            background: #4c4f5f;
+            border-radius: 8px;
+            padding: 1.5px 9px;
+            margin: 3px auto;
+            display: inline-block;
+            font-size: 0.99em;
+            font-weight: 500;
         }
         .game-card a {
             color: #ff6b35;
-            font-size: 0.99em;
-            margin-top: 2px;
+            font-size: 1.04em;
+            margin-top: 3px;
             text-decoration: none;
             border-bottom: 1px dotted #ff6b35;
             transition: color 0.2s;
+            display: inline-block;
         }
         .game-card a:hover {
             color: #ff9b35;
@@ -383,42 +408,76 @@
         });
     </script>
     <script>
-    const epicUrl = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways?platform=epic-games-store";
-    const steamUrl = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways?platform=steam";
-
-    function isPremiumOnStore(game) {
-        const url = (game.open_giveaway_url || "").toLowerCase();
-        const platformStr = (game.platforms || "").toLowerCase();
-        const isEpic = platformStr.includes("epic") && url.includes("epicgames.com");
-        const isSteam = platformStr.includes("steam") && url.includes("steampowered.com");
+    // Platform icon mapping (emoji for simplicity; can swap for SVGs)
+    const platformIcons = {
+        "steam": "🟦",
+        "epic games store": "⬛",
+        "gog": "🟪",
+        "origin": "🟧",
+        "itch.io": "🟥",
+        "ubisoft": "🔵",
+        "playstation": "🔵",
+        "xbox": "🟩",
+        "amazon": "🟨",
+        "android": "🤖",
+        "ios": "📱",
+        "nintendo": "🔴",
+        "discord": "💬",
+        "battle.net": "🌀",
+        // fallback
+        "default": "🎮"
+    };
+    function getIcon(platformStr) {
+        platformStr = platformStr.toLowerCase();
+        for(const key in platformIcons) {
+            if (key !== "default" && platformStr.includes(key)) return platformIcons[key];
+        }
+        return platformIcons["default"];
+    }
+    function isDirectStoreClaim(link, plat) {
+        if (!link) return false;
+        link = link.toLowerCase();
+        plat = plat.toLowerCase();
         return (
-            game.worth && game.worth !== "$0.00" && game.worth !== "N/A" && game.worth.trim() !== "" &&
-            (isEpic || isSteam)
+            (plat.includes("epic") && link.includes("epicgames.com")) ||
+            (plat.includes("steam") && link.includes("steampowered.com"))
         );
     }
-
+    // Load all premium free games from all sources
+    const url = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways";
     async function loadFreeGames() {
         const gamesDiv = document.getElementById("free-games-list");
         gamesDiv.innerHTML = "<p>Loading the latest free games...</p>";
         try {
-            const [epicRes, steamRes] = await Promise.all([
-                fetch(epicUrl).then(r => r.json()),
-                fetch(steamUrl).then(r => r.json())
-            ]);
-            const allPremiumDirect = [...epicRes, ...steamRes].filter(isPremiumOnStore);
+            const response = await fetch(url);
+            const data = await response.json();
             gamesDiv.innerHTML = "";
-            if (allPremiumDirect.length > 0) {
-                allPremiumDirect.slice(0, 8).forEach(game => {
+            // Only show premium (worth > $0) time-limited games
+            const premiumGames = Array.isArray(data) ? data.filter(game =>
+                game.worth && game.worth !== "$0.00" && game.worth !== "N/A" && game.worth.trim() !== ""
+            ) : [];
+            if (premiumGames.length > 0) {
+                premiumGames.slice(0, 12).forEach(game => {
                     const end = (game.end_date && game.end_date !== "N/A") ? game.end_date : "Limited Time";
-                    const platform = game.platforms || "";
+                    // Render all platform icons (could be multiple)
+                    const platStr = game.platforms || "";
+                    const platforms = platStr.split(",").map(p=>p.trim()).filter(Boolean);
+                    const iconsHtml = platforms.map(plat => {
+                        const ico = getIcon(plat);
+                        const badgeDirect = isDirectStoreClaim(game.open_giveaway_url, plat) ? " badge-direct" : "";
+                        return `<span class="platform-badge${badgeDirect}" title="${plat}">
+                                ${ico} ${plat.replace(/Store/i,"")}
+                                ${badgeDirect ? '⭐' : ''}
+                               </span>`;
+                    }).join(' ');
                     const gameCard = document.createElement("div");
                     gameCard.className = "game-card";
                     gameCard.innerHTML = `
                         <img src="${game.image}" alt="${game.title}">
                         <div>
                             <strong>${game.title}</strong>
-                            <span class="platforms">${platform}</span>
-                            <span>Worth: <b style="color:#f9ca24">${game.worth}</b></span>
+                            <div class="platforms">${iconsHtml}</div>
+                            <span class="worth">Worth: ${game.worth}</span>
                             <span class="end-date">Ends: ${end}</span>
                             <a href="${game.open_giveaway_url}" target="_blank">Claim Free</a>
                         </div>
@@ -426,10 +485,7 @@
                     gamesDiv.appendChild(gameCard);
                 });
             } else {
-                gamesDiv.innerHTML = `
-                  <p>No premium free games on Steam or Epic right now. Check back soon!</p>
-                  <p><a href="https://store.epicgames.com/en-US/free-games" style="color:white;text-decoration:underline;" target="_blank">See Epic Games current free games</a></p>
-                `;
+                gamesDiv.innerHTML = "<p>No premium free games right now. Check back soon!</p>";
             }
         } catch (error) {
             gamesDiv.innerHTML = `<p>Failed to load promos: ${error.message}</p>`;
