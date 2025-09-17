@@ -386,9 +386,18 @@
 const epicUrl = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways?platform=epic-games-store";
 const steamUrl = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways?platform=steam";
 
-function isPremium(game) {
-    // worth field is a string like "$19.99" when premium, "$0.00" or "N/A" or "" for always-free
-    return game.worth && game.worth !== "$0.00" && game.worth !== "N/A" && game.worth.trim() !== "";
+function isPremiumOnStore(game) {
+    // Worth must be > $0; platform must be correct; claim link must be direct store link
+    const url = game.open_giveaway_url || "";
+    const isDirectEpic = url.includes("epicgames.com/store");
+    const isDirectSteam = url.includes("store.steampowered.com");
+    return (
+        game.worth && game.worth !== "$0.00" && game.worth !== "N/A" && game.worth.trim() !== "" &&
+        (
+            (game.platforms && game.platforms.toLowerCase().includes("epic")) && isDirectEpic ||
+            (game.platforms && game.platforms.toLowerCase().includes("steam")) && isDirectSteam
+        )
+    );
 }
 
 async function loadFreeGames() {
@@ -400,11 +409,11 @@ async function loadFreeGames() {
             fetch(epicUrl).then(r => r.json()),
             fetch(steamUrl).then(r => r.json())
         ]);
-        // Combine and filter for premium games only
-        const allPremium = [...epicRes, ...steamRes].filter(isPremium);
+        // Combine and filter for premium games only, direct on-store claims only
+        const allPremiumDirect = [...epicRes, ...steamRes].filter(isPremiumOnStore);
         gamesDiv.innerHTML = "";
-        if (allPremium.length > 0) {
-            allPremium.slice(0, 8).forEach(game => {
+        if (allPremiumDirect.length > 0) {
+            allPremiumDirect.slice(0, 8).forEach(game => {
                 const end = (game.end_date && game.end_date !== "N/A") ? game.end_date : "Limited Time";
                 const platform = game.platforms || "";
                 const gameCard = document.createElement("div");
