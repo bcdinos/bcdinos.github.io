@@ -1,556 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BearCrab Gaming Community</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
-<meta name="description" content="BearCrab: Community of gamers with tournaments, events, and game giveaways. Join our Discord!" />
-<style>
-
-  
-@media (max-width: 768px) {
-  .mobile-menu-btn {
-    display: block !important;
-    position: fixed !important;
-    top: env(safe-area-inset-top, 15px) !important;
-    right: env(safe-area-inset-right, 15px) !important;
-    background: #ff6b35 !important;
-    border-radius: 8px !important;
-    padding: 8px 14px !important;
-    color: white !important;
-    font-size: 1.8rem !important;
-    cursor: pointer !important;
-    z-index: 2000 !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
-  }
-  .mobile-menu {
-    position: fixed !important;
-    top: calc(env(safe-area-inset-top, 15px) + 44px) !important;
-    right: env(safe-area-inset-right, 15px) !important;
-    margin: 0 !important;
-    background: white !important;
-    border-radius: 10px !important;
-    padding: 1rem 2rem !important;
-    min-width: 200px !important;
-    display: none !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
-    z-index: 1999 !important;
-  }
-  .mobile-menu.show {
-    display: block !important;
-  }
-}
-
-
-
-
-
-  
-body {
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background: #f5f6fa;
-  overflow-x: hidden;
-}
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  padding: 1rem 2rem;
-  z-index: 1000;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-}
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-}
-.logo {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: #ff6b35;
-  text-decoration: none;
-}
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-  align-items: center;
-}
-.nav-links a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-.nav-links a:hover {
-  color: #ff6b35;
-}
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #333;
-}
-.mobile-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: white;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  padding: 1rem 2rem;
-  min-width: 200px;
-  z-index: 1500; /* High z-index to appear above other elements */
-}
-.mobile-menu.show {
-  display: block;
-}
-.mobile-menu a {
-  display: block;
-  padding: 0.5rem 0;
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-.mobile-menu a:hover {
-  color: #ff6b35;
-}
-.hero {
-  height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BearCrab Gaming Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        /* Header Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ff6b35;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 1rem 2rem;
+            min-width: 200px;
+        }
+        .mobile-menu.show {
+            display: block;
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .mobile-menu a:hover {
+            color: #ff6b35;
+        }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" fill-opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" fill-opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" fill-opacity="0.05"/><circle cx="10" cy="60" r="0.5" fill="%23ffffff" fill-opacity="0.05"/><circle cx="90" cy="40" r="0.5" fill="%23ffffff" fill-opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+            position: relative;
+        }
+        .hero-emoji {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        .discord-btn {
+            display: inline-block;
+            background: #7289da;
+            color: white;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(114, 137, 218, 0.4);
+        }
+        .discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(114, 137, 218, 0.6);
+            background: #5b6eae;
+        }
+        /* Content Sections */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+        .section {
+            margin-bottom: 5rem;
+        }
+        .section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #333;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        /* Game We are Playing Section */
+        .stats {
+            background: linear-gradient(135deg, #ff6b35 0%, #f9ca24 100%);
+            padding: 5rem 2rem;
+            margin: 5rem 0;
+            border-radius: 30px;
+            color: white;
+            text-align: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        .footer p {
+            opacity: 0.7;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero-emoji {
+                font-size: 4rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .section h2 {
+                font-size: 2rem;
+            }
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+    </style>
+    <style>
+.games-section {
+  margin: 3rem 0 2rem 0;
   text-align: center;
-  color: white;
-  position: relative;
-  overflow: hidden;
 }
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" fill-opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" fill-opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" fill-opacity="0.05"/><circle cx="10" cy="60" r="0.5" fill="%23ffffff" fill-opacity="0.05"/><circle cx="90" cy="40" r="0.5" fill="%23ffffff" fill-opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
-  opacity: 0.3;
-}
-.hero-content {
-  max-width: 800px;
-  z-index: 1;
-  position: relative;
-}
-.hero-emoji {
-  font-size: 6rem;
-  margin-bottom: 1rem;
-  display: block;
-  animation: float 3s ease-in-out infinite;
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-.hero h1 {
-  font-size: 5rem;
-  font-weight: 900;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
-}
-.hero p {
-  font-size: 1.5rem;
-  margin-bottom: 3rem;
-  opacity: 0.9;
-  font-weight: 300;
-}
-.discord-btn {
-  display: inline-block;
-  background: #7289da;
-  color: white;
-  padding: 1.5rem 3rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 30px rgba(114, 137, 218, 0.4);
-}
-.discord-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(114, 137, 218, 0.6);
-  background: #5b6eae;
-}
-.content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 5rem 2rem;
-}
-.section {
-  margin-bottom: 5rem;
-}
-.section h2 {
-  font-size: 3rem;
+.games-section h2 {
+  font-size: 2rem;
   font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #00ffcc;
   margin-bottom: 2rem;
-  text-align: center;
-  color: #333;
+  text-shadow: 0 2px 12px #033;
 }
-.cards-grid {
+.games-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
-}
-.card {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  border: 1px solid #f0f0f0;
-}
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-}
-.card-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  display: block;
-}
-.card h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #333;
-}
-.card p {
-  color: #666;
-  line-height: 1.8;
-}
-.stats-section {
-  background: linear-gradient(135deg, #ff6b35 0%, #f9ca24 100%);
-  padding: 5rem 2rem;
-  margin: 5rem 0;
-  border-radius: 30px;
-  color: white;
-  text-align: center;
-}
-#free-games-list {
-  display: flex;
-  gap: 34px;
-  flex-wrap: wrap;
-  margin-top: 15px;
-  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 2.3rem;
+  justify-items: center;
+  align-items: stretch;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 900px;
 }
 .game-card {
-  background: #fff;
-  border-radius: 18px;
-  padding: 18px 14px 15px 14px;
-  width: 245px;
-  text-align: center;
-  box-shadow: 0 6px 22px #7289da24, 0 1.5px 5px #7892c51a;
-  border: 1.5px solid #e1e7f3;
-  margin-bottom: 28px;
-  position: relative;
-  transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
-}
-.game-card:hover {
-  transform: translateY(-5px) scale(1.027);
-  box-shadow: 0 14px 36px #667eea2a, 0 2px 10px #7289da18;
-  border-color: #4287f5;
+  background: rgba(31, 31, 31, 0.94);
+  border-radius: 14px;
+  padding: 1.2rem 0.7rem 1.1rem 0.7rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.19);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.16s, box-shadow 0.16s;
+  cursor: pointer;
+  border: 1px solid #0bbfad2c;
 }
 .game-card img {
-  border-radius: 9px;
-  margin-bottom: 10px;
+  width: 88px;
+  height: 120px;
   object-fit: cover;
-  width: 100%;
-  height: 116px;
-  box-shadow: 0 2px 14px #446ba311;
-  border: 1px solid #eaeafe;
-  transition: border 0.18s;
+  border-radius: 10px;
+  margin-bottom: 1.05rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.17);
+  background: #181818;
 }
-.game-card strong {
-  color: #1d2341;
-  font-size: 1.18em;
-  letter-spacing: 0.009em;
-  font-weight: 800;
-}
-.game-card .platforms {
-  margin: 9px 0 4px 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 7px;
-  min-height: 28px;
-}
-.platform-badge {
-  background: #f7f8fc;
-  color: #2d2f37;
-  font-weight: 500;
-  font-size: 1em;
-  border-radius: 12px;
-  border: 1px solid #e2e6eb;
-  padding: 4px 12px 4px 7px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 1px 2px #e1e2f179;
-}
-.platform-badge svg {
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 4px;
-}
-.badge-direct {
-  background: #ffefdc !important;
-  color: #e65100 !important;
-  border-color: #ffc299 !important;
-  font-weight: 700!important;
-}
-.game-card .worth {
-  color: #ff9100;
-  font-weight: 700;
-  font-size: 1.09em;
-  letter-spacing: 0.02em;
-  margin: 7px 0 0 0;
-}
-.game-card .end-date {
-  color: #832d00;
-  background: #ffeccc;
-  border-radius: 8px;
-  padding: 2px 13px;
-  margin: 8px auto 6px auto;
-  display: inline-block;
-  font-size: 1.06em;
+.game-title {
+  font-size: 1.11rem;
+  margin-top: 0.1rem;
+  color: #fff;
   font-weight: 600;
-  border: 1px solid #ffca99;
   letter-spacing: 0.02em;
+  text-shadow: 0 1px 5px #022, 0 0px 2px #00ffcc80;
 }
-.game-card a {
-  color: #3775fd;
-  font-size: 1.09em;
-  margin-top: 8px;
-  text-decoration: none;
-  border-bottom: 1px dotted #6c90ef;
-  font-weight: 600;
-  display: inline-block;
-  letter-spacing: 0.01em;
-  transition: color 0.18s;
+.game-card:hover {
+  transform: translateY(-8px) scale(1.045);
+  box-shadow: 0 8px 36px 0 #00ffcc32;
+  border: 1.5px solid #00ffcc;
 }
-.game-card a:hover {
-  color: #ff6b35;
-}
-.footer {
-  background: #1a1a1a;
-  color: white;
-  text-align: center;
-  padding: 3rem 2rem;
-}
-.footer p {
-  opacity: 0.7;
-}
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
+@media (max-width: 600px) {
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem;
   }
-  .mobile-menu-btn {
-    display: block;
-  }
-  .hero h1 {
-    font-size: 3rem;
-  }
-  .hero-emoji {
-    font-size: 4rem;
-  }
-  .hero p {
-    font-size: 1.2rem;
-  }
-  .section h2 {
-    font-size: 2rem;
-  }
-  .cards-grid {
-    grid-template-columns: 1fr;
-  }
-  #free-games-list {
-    gap: 12px;
-  }
-  .game-card {
-    width: 95vw;
-    max-width: 320px;
+  .game-card img {
+    width: 70px;
+    height: 93px;
   }
 }
 </style>
 </head>
 <body>
-<header class="header">
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <a href="#" class="logo">🐻🦀 BearCrab</a>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-    <button 
-      class="mobile-menu-btn" 
-      aria-label="Toggle mobile menu" 
-      aria-controls="mobileMenu" 
-      aria-expanded="false"
-      onclick="toggleMobileMenu()"
-    >
-      ☰
-    </button>
-    <div class="mobile-menu" id="mobileMenu" role="menu">
-      <a href="#home" role="menuitem">Home</a>
-      <a href="about.html" role="menuitem">About</a>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">🐻🦀 BearCrab</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#home">Home</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="hero-emoji">🐻🦀</span>
+            <h1>BearCrab</h1>
+            <p>The ultimate gaming community where legends are born</p>
+            <a href="https://discord.gg/dguGQryb" class="discord-btn">🎮 Join Our Discord</a>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="content">
+        <!-- Features Section -->
+        <section class="section">
+            <h2>What We Offer</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <span class="card-icon">🎮</span>
+                    <h3>Epic Gaming Sessions</h3>
+                    <p>Join our community for regular gaming sessions across multiple platforms. From casual matches to competitive tournaments, there's something for everyone.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🏆</span>
+                    <h3>Tournaments & Events</h3>
+                    <p>Participate in weekly tournaments and special events. Climb the leaderboards and earn exclusive rewards while making new friends.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">👥</span>
+                    <h3>Amazing Community</h3>
+                    <p>Connect with like-minded gamers from around the world. Share strategies, form teams, and build lasting friendships in our welcoming environment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Games We Play Section -->
+<section class="games-section">
+  <h2>Games We Are Playing</h2>
+  <div class="games-grid">
+    <div class="game-card">
+      <img src="https://static-cdn.jtvnw.net/ttv-boxart/33214-144x192.jpg" alt="Fortnite" />
+      <div class="game-title">Fortnite</div>
     </div>
-  </nav>
-</header>
-<section class="hero" id="home">
-  <div class="hero-content">
-    <span class="hero-emoji">🐻🦀</span>
-    <h1>BearCrab</h1>
-    <p>Games, friends, and chill vibes.</p>
-    <a href="https://discord.gg/dguGQryb" class="discord-btn">🎮 Join Our Discord</a>
+    <div class="game-card">
+      <img src="https://static-cdn.jtvnw.net/ttv-boxart/27471-144x192.jpg" alt="Minecraft" />
+      <div class="game-title">Minecraft</div>
+    </div>
+    <div class="game-card">
+      <img src="https://static-cdn.jtvnw.net/ttv-boxart/30921-144x192.jpg" alt="Rocket League" />
+      <div class="game-title">Rocket League</div>
+    </div>
   </div>
 </section>
-<div class="content">
-  <section class="section">
-    <h2>What We Offer</h2>
-    <div class="cards-grid">
-      <div class="card">
-        <span class="card-icon">🎮</span>
-        <h3>Epic Gaming Sessions</h3>
-        <p>Join our community for regular gaming sessions across multiple platforms. From casual matches to competitive tournaments, there's something for everyone.</p>
-      </div>
-      <div class="card">
-        <span class="card-icon">🏆</span>
-        <h3>Tournaments & Events</h3>
-        <p>Participate in weekly tournaments and special events. Climb the leaderboards and earn exclusive rewards while making new friends.</p>
-      </div>
-      <div class="card">
-        <span class="card-icon">👥</span>
-        <h3>Amazing Community</h3>
-        <p>Connect with like-minded gamers from around the world. Share strategies, form teams, and build lasting friendships in our welcoming environment.</p>
-      </div>
-    </div>
-  </section>
-  <section id="free-games" class="stats-section">
-    <h2>Free Games Right Now</h2>
-    <div id="free-games-list">
-      <p>Loading the latest free games...</p>
-    </div>
-  </section>
-</div>
-<footer class="footer">
-  <p>© 2025 BearCrab Inc. Built with ❤️ for gamers.</p>
-</footer>
-<script>
-function toggleMobileMenu() {
-  const mobileMenu = document.getElementById('mobileMenu');
-  const menuBtn = document.querySelector('.mobile-menu-btn');
-  mobileMenu.classList.toggle('show');
-  // Toggle aria-expanded
-  const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
-  menuBtn.setAttribute('aria-expanded', (!expanded).toString());
-}
-// Close menu on outside click
-document.addEventListener('click', function(event) {
-  const mobileMenu = document.getElementById('mobileMenu');
-  const menuBtn = document.querySelector('.mobile-menu-btn');
-  if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
-    mobileMenu.classList.remove('show');
-    menuBtn.setAttribute('aria-expanded', 'false');
-  }
-});
-function getSVGIcon(platformStr) {
-  platformStr = platformStr.toLowerCase();
-  if (platformStr.includes("steam")) {
-    return `<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><circle cx="128" cy="128" r="128" fill="#171a21"/><circle cx="128" cy="128" r="65" fill="white"/><circle cx="128" cy="128" r="35" fill="#171a21"/></svg>`;
-  }
-  if (platformStr.includes("epic")) {
-    return `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" rx="8" fill="#2a2a2a"/><text x="10" y="33" font-size="21" font-family="Arial" fill="#fff">EPIC</text></svg>`;
-  }
-  if (platformStr.includes("gog")) {
-    return `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" rx="8" fill="#865bca"/><text x="7" y="34" font-size="19" font-family="Arial" fill="#fff">GOG</text></svg>`;
-  }
-  if (platformStr.includes("xbox")) {
-    return `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="25" fill="#107C10"/><text x="10" y="36" font-size="31" font-family="Arial" fill="#fff">X</text></svg>`;
-  }
-  if (platformStr.includes("playstation")) {
-    return `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" rx="8" fill="#003791"/><text x="7" y="36" font-size="23" font-family="Arial" fill="#fff">PS</text></svg>`;
-  }
-  if (platformStr.includes("amazon")) {
-    return `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" rx="8" fill="#ff9900"/><text x="7" y="36" font-size="24" font-family="Arial" fill="#fff">AMZ</text></svg>`;
-  }
-  return `<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="12" fill="#dae3f4"/><g><circle cx="14" cy="20" r="2.5" fill="#7289da"/><circle cx="34" cy="20" r="2.5" fill="#7289da"/><rect x="16" y="31" width="16" height="3.5" rx="1.5" fill="#7289da"/></g></svg>`;
-}
-function isDirectStoreClaim(link, plat) {
-  if (!link) return false;
-  link = link.toLowerCase();
-  plat = plat.toLowerCase();
-  return (
-    (plat.includes("epic") && link.includes("epicgames.com")) ||
-    (plat.includes("steam") && link.includes("steampowered.com"))
-  );
-}
-const url = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways";
-async function loadFreeGames() {
-  const gamesDiv = document.getElementById("free-games-list");
-  gamesDiv.innerHTML = "<p>Loading the latest free games...</p>";
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    gamesDiv.innerHTML = "";
-    const premiumGames = Array.isArray(data) ? data.filter(game =>
-      game.worth && game.worth !== "$0.00" && game.worth !== "N/A" && game.worth.trim() !== ""
-    ) : [];
-    if (premiumGames.length > 0) {
-      premiumGames.slice(0, 12).forEach(game => {
-        const end = (game.end_date && game.end_date !== "N/A") ? game.end_date : "Limited Time";
-        const platStr = game.platforms || "";
-        const platforms = platStr.split(",").map(p => p.trim()).filter(Boolean);
-        const iconsHtml = platforms.map(plat => {
-          const svg = getSVGIcon(plat);
-          const badgeDirect = isDirectStoreClaim(game.open_giveaway_url, plat) ? " badge-direct" : "";
-          return `<span class="platform-badge${badgeDirect}" title="${plat}">${svg} ${plat.replace(/Store/i, "")}${badgeDirect ? '⭐' : ''}</span>`;
-        }).join(" ");
-        const gameCard = document.createElement("div");
-        gameCard.className = "game-card";
-        gameCard.innerHTML = `
-          <img src="${game.image}" alt="${game.title}">
-          <div>
-            <strong>${game.title}</strong>
-            <div class="platforms">${iconsHtml}</div>
-            <span class="worth">Worth: ${game.worth}</span>
-            <span class="end-date">Ends: ${end}</span>
-            <a href="${game.open_giveaway_url}" target="_blank">Claim Free</a>
-          </div>
-        `;
-        gamesDiv.appendChild(gameCard);
-      });
-    } else {
-      gamesDiv.innerHTML = "<p>No premium free games right now. Check back soon!</p>";
-    }
-  } catch (error) {
-    gamesDiv.innerHTML = `<p>Failed to load promos: ${error.message}</p>`;
-    console.error(error);
-  }
-}
-loadFreeGames();
-</script>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 BearCrab Inc. Built with ❤️ for gamers.</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('show');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+                mobileMenu.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>
