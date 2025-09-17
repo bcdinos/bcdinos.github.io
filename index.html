@@ -382,63 +382,61 @@
             }
         });
     </script>
-   <script>
-const epicUrl = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways?platform=epic-games-store";
-const steamUrl = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways?platform=steam";
+    <script>
+    const epicUrl = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways?platform=epic-games-store";
+    const steamUrl = "https://corsproxy.io/?https://www.gamerpower.com/api/giveaways?platform=steam";
 
-function isPremiumOnStore(game) {
-    // Worth must be > $0; platform must be correct; claim link must be direct store link
-    const url = game.open_giveaway_url || "";
-    const isDirectEpic = url.includes("epicgames.com/store");
-    const isDirectSteam = url.includes("store.steampowered.com");
-    return (
-        game.worth && game.worth !== "$0.00" && game.worth !== "N/A" && game.worth.trim() !== "" &&
-        (
-            (game.platforms && game.platforms.toLowerCase().includes("epic")) && isDirectEpic ||
-            (game.platforms && game.platforms.toLowerCase().includes("steam")) && isDirectSteam
-        )
-    );
-}
-
-async function loadFreeGames() {
-    const gamesDiv = document.getElementById("free-games-list");
-    gamesDiv.innerHTML = "<p>Loading the latest free games...</p>";
-    try {
-        // Fetch both Epic and Steam giveaways in parallel
-        const [epicRes, steamRes] = await Promise.all([
-            fetch(epicUrl).then(r => r.json()),
-            fetch(steamUrl).then(r => r.json())
-        ]);
-        // Combine and filter for premium games only, direct on-store claims only
-        const allPremiumDirect = [...epicRes, ...steamRes].filter(isPremiumOnStore);
-        gamesDiv.innerHTML = "";
-        if (allPremiumDirect.length > 0) {
-            allPremiumDirect.slice(0, 8).forEach(game => {
-                const end = (game.end_date && game.end_date !== "N/A") ? game.end_date : "Limited Time";
-                const platform = game.platforms || "";
-                const gameCard = document.createElement("div");
-                gameCard.className = "game-card";
-                gameCard.innerHTML = `
-                    <img src="${game.image}" alt="${game.title}">
-                    <div>
-                        <strong>${game.title}</strong>
-                        <span class="platforms">${platform}</span>
-                        <span>Worth: <b style="color:#f9ca24">${game.worth}</b></span>
-                        <span class="end-date">Ends: ${end}</span>
-                        <a href="${game.open_giveaway_url}" target="_blank">Claim Free</a>
-                    </div>
-                `;
-                gamesDiv.appendChild(gameCard);
-            });
-        } else {
-            gamesDiv.innerHTML = "<p>No premium free games on Steam or Epic right now. Check back soon!</p>";
-        }
-    } catch (error) {
-        gamesDiv.innerHTML = `<p>Failed to load promos: ${error.message}</p>`;
-        console.error(error);
+    function isPremiumOnStore(game) {
+        const url = (game.open_giveaway_url || "").toLowerCase();
+        const platformStr = (game.platforms || "").toLowerCase();
+        const isEpic = platformStr.includes("epic") && url.includes("epicgames.com");
+        const isSteam = platformStr.includes("steam") && url.includes("steampowered.com");
+        return (
+            game.worth && game.worth !== "$0.00" && game.worth !== "N/A" && game.worth.trim() !== "" &&
+            (isEpic || isSteam)
+        );
     }
-}
-loadFreeGames();
-</script>
+
+    async function loadFreeGames() {
+        const gamesDiv = document.getElementById("free-games-list");
+        gamesDiv.innerHTML = "<p>Loading the latest free games...</p>";
+        try {
+            const [epicRes, steamRes] = await Promise.all([
+                fetch(epicUrl).then(r => r.json()),
+                fetch(steamUrl).then(r => r.json())
+            ]);
+            const allPremiumDirect = [...epicRes, ...steamRes].filter(isPremiumOnStore);
+            gamesDiv.innerHTML = "";
+            if (allPremiumDirect.length > 0) {
+                allPremiumDirect.slice(0, 8).forEach(game => {
+                    const end = (game.end_date && game.end_date !== "N/A") ? game.end_date : "Limited Time";
+                    const platform = game.platforms || "";
+                    const gameCard = document.createElement("div");
+                    gameCard.className = "game-card";
+                    gameCard.innerHTML = `
+                        <img src="${game.image}" alt="${game.title}">
+                        <div>
+                            <strong>${game.title}</strong>
+                            <span class="platforms">${platform}</span>
+                            <span>Worth: <b style="color:#f9ca24">${game.worth}</b></span>
+                            <span class="end-date">Ends: ${end}</span>
+                            <a href="${game.open_giveaway_url}" target="_blank">Claim Free</a>
+                        </div>
+                    `;
+                    gamesDiv.appendChild(gameCard);
+                });
+            } else {
+                gamesDiv.innerHTML = `
+                  <p>No premium free games on Steam or Epic right now. Check back soon!</p>
+                  <p><a href="https://store.epicgames.com/en-US/free-games" style="color:white;text-decoration:underline;" target="_blank">See Epic Games current free games</a></p>
+                `;
+            }
+        } catch (error) {
+            gamesDiv.innerHTML = `<p>Failed to load promos: ${error.message}</p>`;
+            console.error(error);
+        }
+    }
+    loadFreeGames();
+    </script>
 </body>
 </html>
