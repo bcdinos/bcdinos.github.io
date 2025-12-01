@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BearCrab Gaming Group 🐻🦀</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1e1e2f;
+      color: #eee;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      background: #282c34;
+      width: 100%;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 600px;
+      width: 90%;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    h2 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #f1c40f;
+    }
+    a.download-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 12px 24px;
+      font-size: 1.2rem;
+      background-color: #f39c12;
+      color: #222;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    a.download-link:hover {
+      background-color: #d78c0f;
+    }
+    footer {
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+    input[type="file"] {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>BearCrab Gaming Group 🐻🦀</header>
+  <main>
+    <section id="minecraft-ip">
+      <h2>Join Our Minecraft Server</h2>
+      <p><strong>IP Address:</strong> <code>play.minecraft.com</code></p>
+    </section>
+    <section id="modpack">
+      <h2>Download Our Modpack</h2>
+      <p>Upload a modpack file below to share with your users:</p>
+      <input type="file" id="modpackInput" accept=".zip,.rar,.7z" />
+      <div id="downloadArea" style="margin-top: 20px;"></div>
+    </section>
+  </main>
+  <footer>© 2025 BearCrab Gaming Group</footer>
+
+  <script>
+    const modpackInput = document.getElementById('modpackInput');
+    const downloadArea = document.getElementById('downloadArea');
+
+    modpackInput.addEventListener('change', () => {
+      const file = modpackInput.files[0];
+      if (file) {
+        // Create a downloadable link from the uploaded file blob
+        const url = URL.createObjectURL(file);
+        downloadArea.innerHTML = `
+          <a href="${url}" download="${file.name}" class="download-link">
+            Download ${file.name}
+          </a>
+        `;
+      } else {
+        downloadArea.innerHTML = '';
+      }
+    });
+  </script>
+</body>
+</html>
