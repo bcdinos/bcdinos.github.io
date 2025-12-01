@@ -16,8 +16,12 @@
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
-            background: #f9f9f9;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
+        /* Header Navigation */
         .header {
             position: fixed;
             top: 0;
@@ -57,6 +61,7 @@
         .nav-links a:hover {
             color: #ff6b35;
         }
+        /* Mobile menu button */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -90,86 +95,108 @@
         .mobile-menu a:hover {
             color: #ff6b35;
         }
+        /* Main Content */
         main {
             max-width: 800px;
             margin: 120px auto 3rem;
-            padding: 0 1rem;
+            padding: 2rem;
             background: white;
-            border-radius: 20px;
+            border-radius: 30px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             text-align: center;
+            color: #333;
         }
         h1 {
-            font-size: 3rem;
-            color: #ff6b35;
-            margin-bottom: 1rem;
+            font-size: 4rem;
             font-weight: 900;
+            margin-bottom: 0.5rem;
+            color: #ff6b35;
+            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.15);
         }
-        p {
-            font-size: 1.3rem;
-            color: #555;
-            margin-bottom: 2rem;
-            font-weight: 400;
+        p.description {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            opacity: 0.9;
         }
         .server-ip {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin: 1.5rem 0;
+            margin: 1.5rem 0 3rem;
             color: #667eea;
             background-color: #e6e9ff;
-            padding: 1rem 2rem;
-            border-radius: 15px;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
             user-select: all;
             cursor: pointer;
             display: inline-block;
             transition: background-color 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
         .server-ip:hover {
             background-color: #c3c9ff;
         }
-        .modpack-section {
-            margin-top: 3rem;
+        .modpack-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .modpack-section p {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+            color: #666;
+            line-height: 1.6;
         }
         .modpack-btn {
             background: #ff6b35;
             color: white;
-            padding: 1rem 3rem;
+            padding: 1.5rem 3.5rem;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
+            font-weight: 600;
+            font-size: 1.3rem;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
             transition: all 0.3s ease;
             display: inline-block;
+            cursor: pointer;
         }
         .modpack-btn:hover {
             background: #e65a24;
-            box-shadow: 0 15px 40px rgba(230, 90, 36, 0.7);
+            box-shadow: 0 15px 40px rgba(230, 90, 36, 0.6);
             transform: translateY(-3px);
         }
+        /* Footer */
         footer {
             background: #1a1a1a;
             color: white;
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 3rem 2rem;
             font-size: 0.9rem;
-            margin-top: 3rem;
             opacity: 0.7;
+            margin-top: auto;
         }
+        /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.2rem;
+                font-size: 3rem;
+            }
+            p.description {
+                font-size: 1.2rem;
             }
             .server-ip {
-                font-size: 1.6rem;
-                padding: 0.8rem 1.5rem;
+                font-size: 2rem;
+                padding: 1rem 2rem;
             }
             .modpack-btn {
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
+                padding: 1.2rem 3rem;
+                font-size: 1.1rem;
             }
             main {
-                margin-top: 100px;
+                margin: 100px 1rem 3rem;
+                border-radius: 20px;
+                padding: 1.5rem;
             }
         }
     </style>
@@ -191,13 +218,13 @@
     </header>
     <main>
         <h1>BearCrab Minecraft Server</h1>
-        <p>Welcome to the official BearCrab Minecraft server! Join our community and enjoy the exciting gameplay.</p>
+        <p class="description">Welcome to the official BearCrab Minecraft server! Join our community and enjoy exciting gameplay with friends.</p>
         <div class="server-ip" title="Click to copy server IP" onclick="copyToClipboard()">play.bearcrab.us</div>
-        <div class="modpack-section">
+        <section class="modpack-section">
             <h2>Download Our Custom Modpack</h2>
             <p>Get the full experience with our curated modpack. Click below to download and install.</p>
             <a href="modpack.zip" class="modpack-btn" download>Download Modpack</a>
-        </div>
+        </section>
     </main>
     <footer>
         <p>© 2025 BearCrab Inc. Built with ❤️ for gamers.</p>
