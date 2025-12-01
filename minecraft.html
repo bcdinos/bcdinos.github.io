@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BearCrab Minecraft Server</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background: #f9f9f9;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ff6b35;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 1rem 2rem;
+            min-width: 200px;
+        }
+        .mobile-menu.show {
+            display: block;
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .mobile-menu a:hover {
+            color: #ff6b35;
+        }
+        main {
+            max-width: 800px;
+            margin: 120px auto 3rem;
+            padding: 0 1rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+        p {
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+        .server-ip {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 1.5rem 0;
+            color: #667eea;
+            background-color: #e6e9ff;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            user-select: all;
+            cursor: pointer;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        .server-ip:hover {
+            background-color: #c3c9ff;
+        }
+        .modpack-section {
+            margin-top: 3rem;
+        }
+        .modpack-btn {
+            background: #ff6b35;
+            color: white;
+            padding: 1rem 3rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .modpack-btn:hover {
+            background: #e65a24;
+            box-shadow: 0 15px 40px rgba(230, 90, 36, 0.7);
+            transform: translateY(-3px);
+        }
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+            opacity: 0.7;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            .server-ip {
+                font-size: 1.6rem;
+                padding: 0.8rem 1.5rem;
+            }
+            .modpack-btn {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+            main {
+                margin-top: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">🐻🦀 BearCrab</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="minecraft.html">Minecraft Server</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html">Home</a>
+                <a href="minecraft.html">Minecraft Server</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h1>BearCrab Minecraft Server</h1>
+        <p>Welcome to the official BearCrab Minecraft server! Join our community and enjoy the exciting gameplay.</p>
+        <div class="server-ip" title="Click to copy server IP" onclick="copyToClipboard()">play.bearcrab.us</div>
+        <div class="modpack-section">
+            <h2>Download Our Custom Modpack</h2>
+            <p>Get the full experience with our curated modpack. Click below to download and install.</p>
+            <a href="modpack.zip" class="modpack-btn" download>Download Modpack</a>
+        </div>
+    </main>
+    <footer>
+        <p>© 2025 BearCrab Inc. Built with ❤️ for gamers.</p>
+    </footer>
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('show');
+        }
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+                mobileMenu.classList.remove('show');
+            }
+        });
+        function copyToClipboard() {
+            const ipText = document.querySelector('.server-ip').innerText;
+            navigator.clipboard.writeText(ipText).then(() => {
+                alert("Server IP copied to clipboard!");
+            });
+        }
+    </script>
+</body>
+</html>
