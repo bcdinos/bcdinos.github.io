@@ -1,100 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BearCrab Gaming Group 🐻🦀</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #1e1e2f;
-      color: #eee;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-    header {
-      background: #282c34;
-      width: 100%;
-      padding: 20px 0;
-      text-align: center;
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
-    main {
-      flex-grow: 1;
-      max-width: 600px;
-      width: 90%;
-      padding: 20px;
-      box-sizing: border-box;
-      text-align: center;
-    }
-    h2 {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      color: #f1c40f;
-    }
-    a.download-link {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 12px 24px;
-      font-size: 1.2rem;
-      background-color: #f39c12;
-      color: #222;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
-    }
-    a.download-link:hover {
-      background-color: #d78c0f;
-    }
-    footer {
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #888;
-    }
-    input[type="file"] {
-      margin-top: 1rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BearCrab Gaming Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        /* Header Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ff6b35;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 1rem 2rem;
+            min-width: 200px;
+        }
+        .mobile-menu.show {
+            display: block;
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .mobile-menu a:hover {
+            color: #ff6b35;
+        }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" fill-opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" fill-opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" fill-opacity="0.05"/><circle cx="10" cy="60" r="0.5" fill="%23ffffff" fill-opacity="0.05"/><circle cx="90" cy="40" r="0.5" fill="%23ffffff" fill-opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+            position: relative;
+        }
+        .hero-emoji {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        .discord-btn {
+            display: inline-block;
+            background: #7289da;
+            color: white;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(114, 137, 218, 0.4);
+        }
+        .discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(114, 137, 218, 0.6);
+            background: #5b6eae;
+        }
+        /* Content Sections */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+        .section {
+            margin-bottom: 5rem;
+        }
+        .section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #333;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #ff6b35 0%, #f9ca24 100%);
+            padding: 5rem 2rem;
+            margin: 5rem 0;
+            border-radius: 30px;
+            color: white;
+            text-align: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        .footer p {
+            opacity: 0.7;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero-emoji {
+                font-size: 4rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .section h2 {
+                font-size: 2rem;
+            }
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+        #free-games-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.game-card {
+  background: #222428;
+  border-radius: 8px;
+  padding: 10px;
+  width: 180px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(64,64,64,0.09);
+}
+.game-card img {
+  max-width: 100%;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 5px;
+}
+    </style>
 </head>
 <body>
-  <header>BearCrab Gaming Group 🐻🦀</header>
-  <main>
-    <section id="minecraft-ip">
-      <h2>Join Our Minecraft Server</h2>
-      <p><strong>IP Address:</strong> <code>play.minecraft.com</code></p>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">🐻🦀 BearCrab</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#home">Home</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="hero-emoji">🐻🦀</span>
+            <h1>BearCrab</h1>
+            <p>Games, friends, and chill vibes.</p>
+            <a href="https://discord.gg/dguGQryb" class="discord-btn">🎮 Join Our Discord</a>
+        </div>
     </section>
-    <section id="modpack">
-      <h2>Download Our Modpack</h2>
-      <p>Upload a modpack file below to share with your users:</p>
-      <input type="file" id="modpackInput" accept=".zip,.rar,.7z" />
-      <div id="downloadArea" style="margin-top: 20px;"></div>
-    </section>
-  </main>
-  <footer>© 2025 BearCrab Gaming Group</footer>
-
-  <script>
-    const modpackInput = document.getElementById('modpackInput');
-    const downloadArea = document.getElementById('downloadArea');
-
-    modpackInput.addEventListener('change', () => {
-      const file = modpackInput.files[0];
-      if (file) {
-        // Create a downloadable link from the uploaded file blob
-        const url = URL.createObjectURL(file);
-        downloadArea.innerHTML = `
-          <a href="${url}" download="${file.name}" class="download-link">
-            Download ${file.name}
-          </a>
+    <!-- Content Sections -->
+    <div class="content">
+        <!-- Features Section -->
+        <section class="section">
+            <h2>What We Offer</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <span class="card-icon">🎮</span>
+                    <h3>Epic Gaming Sessions</h3>
+                    <p>Join our community for regular gaming sessions across multiple platforms. From casual matches to competitive tournaments, there's something for everyone.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🏆</span>
+                    <h3>Tournaments & Events</h3>
+                    <p>Participate in weekly tournaments and special events. Climb the leaderboards and earn exclusive rewards while making new friends.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">👥</span>
+                    <h3>Amazing Community</h3>
+                    <p>Connect with like-minded gamers from around the world. Share strategies, form teams, and build lasting friendships in our welcoming environment.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Stats Section -->
+<section id="free-games" class="stats-section">
+  <h2>Free Games Right Now</h2>
+  <div id="free-games-list">
+    <p>Loading the latest free games...</p>
+  </div>
+</section>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 BearCrab Inc. Built with ❤️ for gamers.</p>
+    </footer>
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('show');
+        }
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+                mobileMenu.classList.remove('show');
+            }
+        });
+    </script>
+    <script>
+const apiKey = "8843da226fcc415db903587239b5701b";
+const url = `https://api.rawg.io/api/games?key=${apiKey}&genres=free-to-play&page_size=6`;
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    const gamesDiv = document.getElementById("free-games-list");
+    gamesDiv.innerHTML = "";
+    if (data.results && data.results.length > 0) {
+      data.results.forEach(game => {
+        const gameCard = document.createElement("div");
+        gameCard.className = "game-card";
+        gameCard.innerHTML = `
+          <img src="${game.background_image}" alt="${game.name}" width="150" style="border-radius:4px;">
+          <div>
+            <strong>${game.name}</strong><br>
+            <a href="https://rawg.io/games/${game.slug}" target="_blank">View on RAWG</a>
+          </div>
         `;
-      } else {
-        downloadArea.innerHTML = '';
-      }
-    });
-  </script>
+        gamesDiv.appendChild(gameCard);
+      });
+    } else {
+      gamesDiv.innerHTML = "<p>No free games found right now. Check back soon!</p>";
+    }
+  })
+  .catch(error => {
+    document.getElementById("free-games-list").innerHTML = "<p>Failed to load free games.</p>";
+    console.error(error);
+  });
+</script>
 </body>
-</html>
+</html>"
